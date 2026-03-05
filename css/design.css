@@ -1,0 +1,202 @@
+:root {
+    /* Background layers - Deeper, more atmospheric */
+    --bg-primary: #05050a;
+    --bg-secondary: #0a0a14;
+    --bg-surface: rgba(18, 18, 28, 0.7);
+    /* Base for glassmorphism */
+    --bg-hover: rgba(40, 40, 60, 0.4);
+    --bg-active: rgba(60, 60, 90, 0.5);
+    --bg-input: #080812;
+
+    /* Accent colors - Neon Blue & Cyan */
+    --accent: #00d4ff;
+    --accent-dim: #0099ff;
+    --accent-glow: rgba(0, 212, 255, 0.25);
+    --accent-glow-strong: rgba(0, 212, 255, 0.5);
+    --accent-cyan: #00ffff;
+    --accent-blue: #3a86ff;
+
+    /* Functional Accents */
+    --accent-green: #00ffaa;
+    --accent-red: #ff3e3e;
+    --accent-yellow: #ffcc00;
+    --accent-pink: #ff007f;
+
+    /* Text - Sleek & Modern */
+    --text-primary: #f0f4f8;
+    --text-secondary: #a0aec0;
+    --text-muted: #64748b;
+    --text-inverse: #05050a;
+    --text-accent: #00d4ff;
+
+    /* Borders & Glassmorphism */
+    --border: rgba(255, 255, 255, 0.08);
+    --border-focus: rgba(0, 212, 255, 0.5);
+    --glass-bg: rgba(15, 15, 25, 0.7);
+    --glass-blur: blur(12px);
+    --glass-border: rgba(255, 255, 255, 0.1);
+
+    /* Spacing */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+
+    /* Radius - More rounded for modern feel */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+
+    /* Shadows & Glows */
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.7);
+    --shadow-glow: 0 0 20px var(--accent-glow);
+    --shadow-glow-strong: 0 0 30px var(--accent-glow-strong);
+    --glow-cyan: 0 0 15px rgba(0, 255, 255, 0.3);
+
+    /* Font sizes */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.75rem;
+    --text-3xl: 2.25rem;
+    --text-4xl: 3rem;
+
+    /* Transitions - Smoother */
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Sidebar widths */
+    --sidebar-spaces: 72px;
+    --sidebar-channels: 260px;
+}
+
+/* ─── Typography Utilities ─── */
+.text-xs {
+    font-size: var(--text-xs);
+}
+
+.text-sm {
+    font-size: var(--text-sm);
+}
+
+.text-base {
+    font-size: var(--text-base);
+}
+
+.text-lg {
+    font-size: var(--text-lg);
+}
+
+.text-xl {
+    font-size: var(--text-xl);
+}
+
+.text-2xl {
+    font-size: var(--text-2xl);
+}
+
+.text-muted {
+    color: var(--text-muted);
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+}
+
+.text-accent {
+    color: var(--accent);
+}
+
+.text-cyan {
+    color: var(--accent-cyan);
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+/* ─── Glassmorphism & Effects ─── */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+}
+
+.glass-card {
+    background: rgba(20, 20, 35, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: var(--shadow-md);
+}
+
+.glow-text {
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.glow-icon {
+    filter: drop-shadow(0 0 8px var(--accent-glow));
+}
+
+.glow-shadow {
+    box-shadow: var(--shadow-glow);
+}
+
+.glow-shadow-strong {
+    box-shadow: var(--shadow-glow-strong);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--accent), var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, var(--accent), var(--accent-blue));
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-hover);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+/* --- Utility Classes --- */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-1 { flex: 1; min-height: 0; }
+.overflow-hidden { overflow: hidden; }
+.scrollable { overflow-y: auto; -webkit-overflow-scrolling: touch; }

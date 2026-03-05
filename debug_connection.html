@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>NexusHub - Supabase Connection Tester</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 2rem;
+            background: #0f172a;
+            color: #f8fafc;
+            line-height: 1.6;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .success {
+            color: #4ade80;
+        }
+
+        .error {
+            color: #f87171;
+        }
+
+        pre {
+            background: #000;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 0.8rem;
+        }
+
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h1>🔍 Supabase Connection Tester</h1>
+        <p>This tool helps you verify if your browser can reach your Supabase project.</p>
+
+        <div id="results">
+            <p>Initializing...</p>
+        </div>
+
+        <button onclick="runTest()">Run Diagnostics</button>
+    </div>
+
+    <!-- SDKs -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+
+    <script>
+        async function runTest() {
+            const results = document.getElementById('results');
+            results.innerHTML = "<p>⏳ Connecting to Supabase...</p>";
+
+            try {
+                // 1. Basic Connection
+                const startTime = Date.now();
+                const { data, error } = await window.supabase.from('profiles').select('count', { count: 'exact', head: true });
+                const endTime = Date.now();
+
+                if (error) {
+                    results.innerHTML = `
+                        <p class="error">❌ Connection Failed</p>
+                        <p><b>Error Message:</b> ${error.message}</p>
+                        <p><b>Error Code:</b> ${error.code}</p>
+                        <p><b>Context:</b> ${error.details || 'No details provided'}</p>
+                        <p><i>If you see "406 Not Acceptable", your database schema might be stale. Try running the SQL repair again.</i></p>
+                    `;
+                } else {
+                    results.innerHTML = `
+                        <p class="success">✅ Connection Successful!</p>
+                        <p><b>Response Time:</b> ${endTime - startTime}ms</p>
+                        <p><b>Profiles Table:</b> Accessible</p>
+                        <p>Now try to <b>Log out and Log in again</b> to the main app to sync your profile.</p>
+                    `;
+                }
+            } catch (e) {
+                results.innerHTML = `
+                    <p class="error">❌ CRITICAL SYSTEM ERROR</p>
+                    <pre>${e.stack || e}</pre>
+                `;
+            }
+        }
+
+        // Auto-run
+        setTimeout(runTest, 1000);
+    </script>
+</body>
+
+</html>
